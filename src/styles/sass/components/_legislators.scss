@@ -11,23 +11,6 @@
 	animation: moveInLeft 0.75s ease-out;
 }
 
-.border:hover {
-	transform: scale(1.1);
-	transition-timing-function: ease-out;
-	transition: .75s;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.border::after {
-	content: '';
-}
-
-.border:hover::after {
-	transform: scale(1);
-	transition-timing-function: ease-out;
-	transition: .75s;
-}
-
 .legislatorContainer {
 	display: flex;
 	justify-content: space-evenly;
@@ -39,6 +22,25 @@
 	margin-bottom: 30px;
 }
 
+@media (min-width: 870px) {
+	.border:hover {
+		transform: scale(1.1);
+		transition-timing-function: ease-out;
+		transition: .75s;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.border::after {
+		content: '';
+	}
+
+	.border:hover::after {
+		transform: scale(1);
+		transition-timing-function: ease-out;
+		transition: .75s;
+	}
+}
+
 @media (max-width: 870px) {
 	.legislatorContainer {
 		display: flex;
@@ -47,7 +49,7 @@
 	}
 
 	.border {
-		margin-bottom: 30px;
+		margin-bottom: 10px;
 	}
 }
 
