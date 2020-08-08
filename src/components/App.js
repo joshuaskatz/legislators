@@ -6,9 +6,14 @@ import '../styles/sass/styles.scss';
 
 const App = () => (
 	<div>
-		<Header />
+		<div className="header">
+			<Header />
+		</div>
+
 		<Legislators />
-		<Mapbox />
+		<div className="mapbox-container">
+			<Mapbox />
+		</div>
 	</div>
 );
 

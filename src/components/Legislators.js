@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Legislators = ({ legislators }) => (
-	<div className=" legislatorContainer">
+	<div className=" legislator-container">
 		{legislators.map((legislator) => {
 			return (
 				<div key={legislator.name} className="border">
 					<h1>{legislator.name}</h1>
 					<h2>{legislator.chamber[0].post.division.name}</h2>
 					<h3>{legislator.party[0].organization.name} Party</h3>
-					<img src={legislator.image} alt="" />
 					{legislator.contactDetails.map((details) => {
 						if (details.type === 'voice') {
 							return (

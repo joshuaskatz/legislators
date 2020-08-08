@@ -1,22 +1,22 @@
-.mapContainer {
+#map-container {
+	position: 'absolute';
+	top: 0;
+	bottom: 0;
+	height: 70vh;
+	width: 75vw;
+	border-radius: 10px;
+}
+.mapbox-container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	top: 0;
-	right: 0;
-	left: 0;
-	bottom: 0;
 }
 
-.sidebarStyle {
-	display: inline-block;
-	position: fixed;
-	top: 0;
-	left: 0;
-	margin: 12px;
-	background-color: #404040;
-	color: #ffffff;
-	z-index: 1 !important;
-	padding: 6px;
-	font-weight: bold;
+@media (max-width: 600px) {
+	#map-container {
+		position: 'absolute';
+		top: 0;
+		bottom: 0;
+		height: 50vh;
+		width: 90vw;
+	}
 }

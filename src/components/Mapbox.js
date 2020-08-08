@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { GraphQLClient } from 'graphql-request';
 import { addLegislators, removeLegislators } from '../actions/legislators';
 
-mapboxgl.accessToken =
-	'pk.eyJ1Ijoiam9zaHVhc2thdHoiLCJhIjoiY2tjNTZqdWZ3MGVxMDJ5cDJqMDF5YWtkbCJ9.gvaKI-U917KtwP6dH-hdlA';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
 class Mapbox extends React.Component {
 	state = {
@@ -15,12 +15,22 @@ class Mapbox extends React.Component {
 	};
 
 	componentDidMount() {
+		const OPEN_STATES_API_KEY = process.env.REACT_APP_OPEN_STATES_KEY;
+
 		const map = new mapboxgl.Map({
 			container: this.mapContainer,
 			style: 'mapbox://styles/mapbox/streets-v11',
 			center: [ this.state.lng, this.state.lat ],
 			zoom: this.state.zoom
 		});
+
+		map.addControl(
+			new MapboxGeocoder({
+				accessToken: mapboxgl.accessToken,
+				mapboxgl: mapboxgl
+			})
+		);
+
 		map.addControl(
 			new mapboxgl.GeolocateControl({
 				positionOptions: {
@@ -29,7 +39,12 @@ class Mapbox extends React.Component {
 				trackUserLocation: true
 			})
 		);
+
+		map.addControl(new mapboxgl.NavigationControl());
+
 		map.on('click', (e) => {
+			document.documentElement.scrollTop = 0;
+
 			const { lat, lng } = e.lngLat.wrap();
 
 			const main = async () => {
@@ -37,7 +52,7 @@ class Mapbox extends React.Component {
 
 				const graphQLClient = new GraphQLClient(endpoint, {
 					headers: {
-						'X-API-Key': '9056b5b5-7092-41f9-b5b4-2dfb00a71514'
+						'X-API-Key': OPEN_STATES_API_KEY
 					}
 				});
 
@@ -96,10 +111,10 @@ class Mapbox extends React.Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div>
 				<div
+					id="map-container"
 					ref={(el) => (this.mapContainer = el)}
-					className="mapContainer map"
 				/>
 			</div>
 		);

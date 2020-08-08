@@ -1,8 +1,10 @@
+@import './abstract/variables';
 @import './base/main';
-@import './components/map';
 @import './components/site';
 @import './components/legislators';
 @import './components/header';
 @import './components/buttons';
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
